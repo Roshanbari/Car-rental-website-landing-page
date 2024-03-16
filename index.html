@@ -373,18 +373,31 @@
         </div>
 
     </footer>
-    <script>
+  <script>
         function validateLocations() {
-            var pickUpLocation = document.getElementById('pick-up-location').value;
-            var dropLocation = document.getElementById('drop-location').value;
+            var pickUpLocation = document.getElementById('pick-up-location').value.trim().toLowerCase();
+            var dropLocation = document.getElementById('drop-location').value.trim().toLowerCase();
+            var validCities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Ahmedabad", "Chennai", "Kolkata", "Surat", "Pune", "Jaipur",
+                               "mumbai", "delhi", "bangalore", "hyderabad", "ahmedabad", "chennai", "kolkata", "surat", "pune", "jaipur"];
 
-            if (!pickUpLocation.includes('India') || !dropLocation.includes('India')) {
-                alert('Please enter a location in India.');
+            if (!validCities.includes(pickUpLocation) || !validCities.includes(dropLocation)) {
+                alert('Please enter a valid location in India.' );
                 return;
             }
+
+            
+            document.getElementById('pick-up-location').value = '';
+            document.getElementById('drop-location').value = '';
+
             alert('Locations are valid. Proceed with search.');
         }
+
+            window.onload = function() {
+            document.getElementById('pick-up-location').value = '';
+            document.getElementById('drop-location').value = '';
+        }
     </script>
+
 </body>
 
 </html>
